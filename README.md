@@ -19,6 +19,4 @@ Contém os notebooks trabalhados para exploração dos dados e modelagem do prob
 Se divide em:<br>
 * Análise Exploratória dos Dados
 * Modelos SARIMA
-* Script de Automação
-
-Também contém o diretório model que constitui-se de um virtual env com os códigos prontos para entrar em produção.
+* Diretório model que constitui-se de um virtual env com os códigos prontos para entrar em produção.
