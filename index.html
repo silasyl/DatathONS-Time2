@@ -13981,6 +13981,14 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="SARIMA-Model-for-Bias-Prediction">SARIMA Model for Bias Prediction<a class="anchor-link" href="#SARIMA-Model-for-Bias-Prediction">&#182;</a></h1><p>Here we study and apply ARIMA and SARIMA models, for external model bias prediction.<br>
 During the analysis bias can appear as vies, portuguese word for bias.</p>
+<p>We present here the equation for SARIMA models:</p>
+<p><font size="4">$y_t = \color{orange}{y_t - d \cdot y_{t-1}} = c + \color{blue}{\sum_{n=1}^{p} \alpha_n y_{t-n}} + \color{red}{\sum_{n=1}^{q} \theta_n \epsilon_{t-n}} + \color{green}{\sum_{n=1}^{P} \phi_n y_{t-sn} + \sum_{n=1}^{Q} \eta_n \epsilon_{t-sn}} + \epsilon_t$</font></p>
+<ul>
+<li><font color='blue'>Blue</font>: AR (Auto Regressive) term (p)</li>
+<li><font color='red'>Red</font>: MA (Moving Average) term (q)</li>
+<li><font color='orange'>Orange</font>: Derivative term (d)</li>
+<li><font color='green'>Green</font>: Sazonality AR and MA terms (P, D, Q, s)</li>
+</ul>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15217,13 +15225,9 @@ Critical Values:
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>With these results, we apply our first, simpler, model, an ARIMA with derivative.</p>
+<h1 id="ARIMA-(p,d,q)-=-(0,1,1)">ARIMA (p,d,q) = (0,1,1)<a class="anchor-link" href="#ARIMA-(p,d,q)-=-(0,1,1)">&#182;</a></h1><p>With these results, we apply our first, simpler, model, an ARIMA with derivative.<br>
+Below are presented the model parameters as well as some statistics analysis, used to investigate the model quality and reliability.</p>
 
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="ARIMA-(p,d,q)-=-(0,1,1)">ARIMA (p,d,q) = (0,1,1)<a class="anchor-link" href="#ARIMA-(p,d,q)-=-(0,1,1)">&#182;</a></h1>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
@@ -15613,7 +15617,7 @@ Critical Values:
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The in-sample 1 step ahead prediction is used to show that the model is capable of following the data. However, since our data contains sazonality, this simpler model is capable of only predicting the average daily value. We proceed to SARIMA model.</p>
-<h1 id="SARIMA-Model">SARIMA Model<a class="anchor-link" href="#SARIMA-Model">&#182;</a></h1><p>First we show the data decomposition, in trend, sazonality and residue.</p>
+<h1 id="SARIMA-Model">SARIMA Model<a class="anchor-link" href="#SARIMA-Model">&#182;</a></h1><p>For our SARIMA model, we first investigate its data decomposition, in trend, sazonality and residue. The sazonality compromises of 48 points, corresponding to a daily sazonality.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15924,8 +15928,8 @@ Critical Values:
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We performed a grid search over some of the hiperparameters values and here we present the best one achieved.</p>
-<h1 id="SARIMA:-(p,d,q)(P,D,Q,s)-=-(1,1,1)(1,1,1,48)">SARIMA: (p,d,q)(P,D,Q,s) = (1,1,1)(1,1,1,48)<a class="anchor-link" href="#SARIMA:-(p,d,q)(P,D,Q,s)-=-(1,1,1)(1,1,1,48)">&#182;</a></h1>
+<h1 id="SARIMA:-(p,d,q)(P,D,Q,s)-=-(1,1,1)(1,1,1,48)">SARIMA: (p,d,q)(P,D,Q,s) = (1,1,1)(1,1,1,48)<a class="anchor-link" href="#SARIMA:-(p,d,q)(P,D,Q,s)-=-(1,1,1)(1,1,1,48)">&#182;</a></h1><p>We performed a grid search over some hiperparameters values and here we present the best one achieved.</p>
+
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
@@ -16558,7 +16562,8 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Post-work">Post work<a class="anchor-link" href="#Post-work">&#182;</a></h1><p>These results show that a good model for one power plant may not be the best one for others. Each one need to be analyzed individually. Moreover, a full analysis must be conducted, regarding other hyperparameters like window size and different sazonalities. Our model considered a fixed daily sazonality and addictive SARIMA models. A different approach would be consider a multiplicative SARIMA model.</p>
+<h1 id="Post-work">Post work<a class="anchor-link" href="#Post-work">&#182;</a></h1><p>These results show that a good model for one power plant may not be the best one for others. Each one need to be analyzed individually. Moreover, a full analysis must be conducted, regarding other hyperparameters like window size and different sazonalities.</p>
+<p>Our model considered a fixed daily sazonality and addictive SARIMA models. A different approach would be consider a multiplicative SARIMA model. We can also extend to SARIMAX models, using external data like weather prediction as exogenous predictors.</p>
 
 </div>
 </div>
